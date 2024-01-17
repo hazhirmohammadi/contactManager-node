@@ -1,14 +1,1 @@
-[
-  {
-    "id": "1",
-    "fullName": "hazhir"
-  },
-  {
-    "id": "2",
-    "fullName": "rezgar"
-  },
-  {
-    "id": "3",
-    "fullName": "solayman"
-  }
-]
+[{"fullname":"hazhir java","phone":905555,"email":"hazhir@gmail.com"}]
