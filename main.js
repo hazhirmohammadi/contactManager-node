@@ -1,11 +1,14 @@
-const yargs = require("yargs");
-const {addContact} = require("./contacts");
+const {parse,scriptName,usage,version,command} = require("yargs");
+const {addContact, listsContacts, removeContact} = require("./contacts");
 const chalk = require("chalk");
 
-yargs.command({
+scriptName(`${chalk.italic("contact manager")}`)
+usage(`$0 ${chalk.red("<cammand>")} ${chalk.green("[args]")}`);
+version("1.0.0")
+command({
    command: "create",
    aliases: ["c", "ct"],
-   describe: "[Create new contact]",
+   describe: `${chalk.green("[Create new contact]")}`,
    builder: {
       fullname: {
          alias: "f",
@@ -34,14 +37,31 @@ yargs.command({
       })
    }
 })
-yargs.command({
+command({
    command: "list",
    aliases: ["l"],
    describe: `${chalk.yellow("[listing ths save contacts]")}`,
    handler() {
+      listsContacts();
+   }
+})
+command({
+   command: "remove",
+   aliases: ["r"],
+   describe: `${chalk.red("[ remove contact]")}`,
+   builder: {
+      fullname:{
+         alias:"f",
+         describe:"person fullname",
+         demandOption:true,
+         type:"string"
+      }
+   },
+   handler(args) {
 
+      removeContact(args.fullname);
    }
 })
 
-yargs.parse()
-// console.log(yargs.argv)
+parse()
+
